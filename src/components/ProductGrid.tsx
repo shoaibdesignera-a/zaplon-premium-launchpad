@@ -5,35 +5,70 @@ import scooterD20 from "@/assets/scooter-d20.png";
 import scooterK3 from "@/assets/scooter-k3.png";
 import scooterK5 from "@/assets/scooter-k5.png";
 import scooterK6 from "@/assets/scooter-k6.png";
+import scooterX9 from "@/assets/scooter-x9.png";
+import scooterS1 from "@/assets/scooter-s1.png";
+import scooterT7 from "@/assets/scooter-t7.png";
+import scooterM3 from "@/assets/scooter-m3.png";
 
 const products = [
   {
-    name: "D20 Electric Scooter",
+    name: "S1 Lite",
+    tag: "Best Seller",
+    image: scooterS1,
+    motor: "350W",
+    range: "25 km",
+    price: "AED 1,799",
+  },
+  {
+    name: "D20 Urban",
     image: scooterD20,
     motor: "500W",
     range: "30 km",
     price: "AED 2,499",
   },
   {
-    name: "K3 Electric Scooter",
+    name: "K3 Sport",
     image: scooterK3,
     motor: "800W",
     range: "40 km",
     price: "AED 3,299",
   },
   {
-    name: "K5 Electric Scooter",
+    name: "K5 Pro",
+    tag: "Popular",
     image: scooterK5,
     motor: "1000W",
     range: "50 km",
     price: "AED 4,199",
   },
   {
-    name: "K6 Electric Scooter",
+    name: "K6 Elite",
     image: scooterK6,
     motor: "1200W",
     range: "60 km",
     price: "AED 5,499",
+  },
+  {
+    name: "X9 Racing",
+    tag: "New",
+    image: scooterX9,
+    motor: "1500W",
+    range: "55 km",
+    price: "AED 6,299",
+  },
+  {
+    name: "T7 Off-Road",
+    image: scooterT7,
+    motor: "2000W",
+    range: "70 km",
+    price: "AED 7,499",
+  },
+  {
+    name: "M3 Cargo",
+    image: scooterM3,
+    motor: "600W",
+    range: "45 km",
+    price: "AED 3,699",
   },
 ];
 
@@ -56,6 +91,9 @@ const ProductGrid = () => {
           <h2 className="text-4xl md:text-6xl font-heading font-bold">
             Choose Your Ride
           </h2>
+          <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
+            From city commuters to off-road beasts — find the perfect Zaplon for your lifestyle.
+          </p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -64,10 +102,16 @@ const ProductGrid = () => {
               key={p.name}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 * i }}
-              className="glass-card product-card-hover group overflow-hidden"
+              transition={{ duration: 0.6, delay: 0.05 * i }}
+              className="glass-card product-card-hover group overflow-hidden relative"
             >
-              <div className="relative p-6 pb-0 flex items-center justify-center h-56 overflow-hidden">
+              {p.tag && (
+                <span className="absolute top-4 right-4 z-20 text-[10px] font-heading font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-primary/20 text-primary border border-primary/30">
+                  {p.tag}
+                </span>
+              )}
+
+              <div className="relative p-6 pb-0 flex items-center justify-center h-52 overflow-hidden">
                 <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl" />
                 <img
                   src={p.image}
@@ -90,7 +134,7 @@ const ProductGrid = () => {
                   <span className="text-xl font-heading font-bold text-primary">
                     {p.price}
                   </span>
-                  <button className="p-2.5 rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 neon-glow">
+                  <button className="p-2.5 rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300">
                     <ShoppingCart className="w-4 h-4" />
                   </button>
                 </div>
